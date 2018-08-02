@@ -13,3 +13,6 @@ POST config refresh request: curl -v -X POST "http://localhost:8771/actuator/bus
 to start servers
 java -jar eureka-server-0.0.1-SNAPSHOT.jar - -spring.profiles.active=peer1
 java -jar eureka-server-0.0.1-SNAPSHOT.jar - -spring.profiles.active=peer2
+also need to add hosts in /etc/hosts
+127.0.0.1 peer1
+127.0.0.1 peer2
