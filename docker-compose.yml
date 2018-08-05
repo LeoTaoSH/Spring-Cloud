@@ -1,0 +1,13 @@
+version: '3'
+services:
+  eureka-server:
+    image: spring-cloud/spring_cloud_netflix_eureka
+    restart: always
+    ports:
+      - 8761:8761
+
+  service-hi:
+    image: spring-cloud/spring_cloud_netflix_eureka_client
+    restart: always
+    ports:
+      - 8763:8763

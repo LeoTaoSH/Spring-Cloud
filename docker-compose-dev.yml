@@ -1,0 +1,11 @@
+version: '3'
+services:
+  eureka-server:
+    build: spring_cloud_netflix_eureka
+    ports:
+      - 8761:8761
+
+  service-hi:
+    build: spring_cloud_netflix_eureka_client
+    ports:
+      - 8763:8763
