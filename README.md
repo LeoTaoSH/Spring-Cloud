@@ -16,3 +16,7 @@ java -jar eureka-server-0.0.1-SNAPSHOT.jar - -spring.profiles.active=peer2
 also need to add hosts in /etc/hosts
 127.0.0.1 peer1
 127.0.0.1 peer2
+
+13), Hystrix Cluster Turbine
+The Turbine stream endpoint is: http://peer1:8774/turbine.stream
+
