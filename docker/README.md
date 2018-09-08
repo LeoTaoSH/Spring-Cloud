@@ -1,26 +1,27 @@
-https://docs.docker.com/get-started/
+#Docker get-starter
+this is for docker experiment [docker-starter](https://docs.docker.com/get-started/)
 1), Orientation
-List Docker CLI commands
+- List Docker CLI commands
 docker
 docker container --help
 
-# Display Docker version and info
+- Display Docker version and info
 docker --version
 docker version
 docker info
 
-# Execute Docker image
+- Execute Docker image
 docker run hello-world
 
-# List Docker images
+- List Docker images
 docker image ls
 
-# List Docker containers (running, all, all in quiet mode)
+- List Docker containers (running, all, all in quiet mode)
 docker container ls
 docker container ls --all
 docker container ls -aq
 
-##2), Containers
+2), Containers
 docker build -t friendlyhello .  # Create image using this directory's Dockerfile
 docker run -p 4000:80 friendlyhello  # Run "friendlyname" mapping port 4000 to 80
 docker run -d -p 4000:80 friendlyhello         # Same thing, but in detached mode
