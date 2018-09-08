@@ -1,6 +1,5 @@
 #Docker get-starter
 this is for docker experiment [docker-starter](https://docs.docker.com/get-started/)
-
 #1), Orientation
 - List Docker CLI commands
 docker
@@ -107,13 +106,13 @@ eval $(docker-machine env myvm1)
 ## Mac command to connect shell to myvm1
 & "C:\Program Files\Docker\Docker\Resources\bin\docker-machine.exe" env myvm1 | Invoke-Expression   
 ## Windows command to connect shell to myvm1
-docker stack deploy -c <file> <app>  
+docker stack deploy -c <file> <app>
 ## Deploy an app; command shell must be set to talk to manager (myvm1), uses local Compose file
 docker-machine scp docker-compose.yml myvm1:~ 
 ## Copy file to node's home dir (only required if you use ssh to connect to manager and deploy the app)
 docker-machine ssh myvm1 "docker stack deploy -c <file> <app>"   
 ## Deploy an app using ssh (you must have first copied the Compose file to myvm1)
-eval $(docker-machine env -u)     
+eval $(docker-machine env -u)
 ## Disconnect shell from VMs, use native docker
 docker-machine stop $(docker-machine ls -q)               
 ## Stop all running VMs
