@@ -1,6 +1,7 @@
 #Docker get-starter
 this is for docker experiment [docker-starter](https://docs.docker.com/get-started/)
-1), Orientation
+
+#1), Orientation
 - List Docker CLI commands
 docker
 docker container --help
@@ -21,7 +22,7 @@ docker container ls
 docker container ls --all
 docker container ls -aq
 
-2), Containers
+#2), Containers
 docker build -t friendlyhello .  
 ## Create image using this directory's Dockerfile
 docker run -p 4000:80 friendlyhello  
@@ -31,29 +32,29 @@ docker run -d -p 4000:80 friendlyhello
 docker container ls                                
 ## List all running containers
 docker container ls -a             
-# List all containers, even those not running
+## List all containers, even those not running
 docker container stop <hash>           
-# Gracefully stop the specified container
+## Gracefully stop the specified container
 docker container kill <hash>         
-# Force shutdown of the specified container
+## Force shutdown of the specified container
 docker container rm <hash>        
-# Remove specified container from this machine
+## Remove specified container from this machine
 docker container rm $(docker container ls -a -q)         
-# Remove all containers
+## Remove all containers
 docker image ls -a                             
-# List all images on this machine
+## List all images on this machine
 docker image rm <image id>            
-# Remove specified image from this machine
+## Remove specified image from this machine
 docker image rm $(docker image ls -a -q)   
-# Remove all images from this machine
+## Remove all images from this machine
 docker login             
-# Log in this CLI session using your Docker credentials
+## Log in this CLI session using your Docker credentials
 docker tag <image> username/repository:tag  
-# Tag <image> for upload to registry
+## Tag <image> for upload to registry
 docker push username/repository:tag
-# Upload tagged image to registry
+## Upload tagged image to registry
 docker run username/repository:tag                   
-# Run image from a registry
+## Run image from a registry
 
 3), Services
 docker stack ls                                            
@@ -81,43 +82,43 @@ docker-machine create --driver virtualbox myvm1
 docker-machine create -d hyperv --hyperv-virtual-switch "myswitch" myvm1 
 ## Win10
 docker-machine env myvm1                
-# View basic information about your node
+## View basic information about your node
 docker-machine ssh myvm1 "docker node ls"         
-# List the nodes in your swarm
+## List the nodes in your swarm
 docker-machine ssh myvm1 "docker node inspect <node ID>"        
-# Inspect a node
+## Inspect a node
 docker-machine ssh myvm1 "docker swarm join-token -q worker"   
-# View join token
+## View join token
 docker-machine ssh myvm1   
-# Open an SSH session with the VM; type "exit" to end
+## Open an SSH session with the VM; type "exit" to end
 docker node ls                
-# View nodes in swarm (while logged on to manager)
+## View nodes in swarm (while logged on to manager)
 docker-machine ssh myvm2 "docker swarm leave"  
-# Make the worker leave the swarm
+## Make the worker leave the swarm
 docker-machine ssh myvm1 "docker swarm leave -f" 
-# Make master leave, kill swarm
+## Make master leave, kill swarm
 docker-machine ls 
-# list VMs, asterisk shows which VM this shell is talking to
+## list VMs, asterisk shows which VM this shell is talking to
 docker-machine start myvm1            
-# Start a VM that is currently not running
+## Start a VM that is currently not running
 docker-machine env myvm1      
-# show environment variables and command for myvm1
+## show environment variables and command for myvm1
 eval $(docker-machine env myvm1)         
-# Mac command to connect shell to myvm1
+## Mac command to connect shell to myvm1
 & "C:\Program Files\Docker\Docker\Resources\bin\docker-machine.exe" env myvm1 | Invoke-Expression   
-# Windows command to connect shell to myvm1
+## Windows command to connect shell to myvm1
 docker stack deploy -c <file> <app>  
-# Deploy an app; command shell must be set to talk to manager (myvm1), uses local Compose file
+## Deploy an app; command shell must be set to talk to manager (myvm1), uses local Compose file
 docker-machine scp docker-compose.yml myvm1:~ 
-# Copy file to node's home dir (only required if you use ssh to connect to manager and deploy the app)
+## Copy file to node's home dir (only required if you use ssh to connect to manager and deploy the app)
 docker-machine ssh myvm1 "docker stack deploy -c <file> <app>"   
-# Deploy an app using ssh (you must have first copied the Compose file to myvm1)
+## Deploy an app using ssh (you must have first copied the Compose file to myvm1)
 eval $(docker-machine env -u)     
-# Disconnect shell from VMs, use native docker
+## Disconnect shell from VMs, use native docker
 docker-machine stop $(docker-machine ls -q)               
-# Stop all running VMs
+## Stop all running VMs
 docker-machine rm $(docker-machine ls -q) 
-# Delete all VMs and their disk images
+## Delete all VMs and their disk images
 
 #5), Stacks
 
