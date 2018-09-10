@@ -46,13 +46,13 @@ docker image rm <image id>
 ## Remove specified image from this machine
 docker image rm $(docker image ls -a -q)   
 ## Remove all images from this machine
-docker login             
+docker login --> use docker hub id(leotao/...)            
 ## Log in this CLI session using your Docker credentials
-docker tag <image> username/repository:tag  
+docker tag <image> username/repository:tag  --> docker tag friendlyhello leotao/get-started:part2
 ## Tag <image> for upload to registry
-docker push username/repository:tag
+docker push username/repository:tag --> docker push leotao/get-started:part2
 ## Upload tagged image to registry
-docker run username/repository:tag                   
+docker run username/repository:tag --> docker run -p 4000:80 leotao/get-started:part2                   
 ## Run image from a registry
 
 3), Services
@@ -76,6 +76,18 @@ docker swarm leave --force
 If you don’t run docker swarm init you get an error that “this node is not a swarm manager.”
 
 #4), Swarms
+docker swarm init to enable swarm mode and make your current machine a swarm manager.then run docker swarm join on other machines to have them join the swarm as workers. 
+docker-machine create --driver virtualbox myvm1
+docker-machine create --driver virtualbox myvm2
+docker-machine ls
+create and init docker swarm manager by execute below command, docker swarm init.
+docker-machine ssh myvm1 "docker swarm init --advertise-addr <myvm1 ip>" --> docker-machine ssh myvm1 "docker swarm init --advertise-addr 192.168.99.100"
+add a myvm2 as worker:
+Always run docker swarm init and docker swarm join with port 2377 (the swarm management port), or no port at all and let it take the default. get the join token: docker-machine ssh myvm1 "docker swarm join-token -q worker"
+docker-machine ssh myvm2 "docker swarm join --token SWMTKN-1-4d44q912a1ezr3guxcer2j40m7zxv4p03251zoyo5burkdlr66-65iqg16kfdkpuvrehdfl1gb9g 192.168.99.100:2377"
+docker-machine ssh myvm1 "docker node ls"
+
+
 docker-machine create --driver virtualbox myvm1 
 ## Create a VM (Mac, Win7, Linux)
 docker-machine create -d hyperv --hyperv-virtual-switch "myswitch" myvm1 
