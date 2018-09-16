@@ -132,5 +132,18 @@ docker-machine rm $(docker-machine ls -q)
 ## Delete all VMs and their disk images
 
 #5), Stacks
+##add a new service: docker-compose-visualizer.yml
+eval $(docker-machine env myvm1)
+docker stack deploy -c docker-compose-visualizer.yml getstartedlab
+docker-machine ls
+##Open 192.168.0.101:8080
+docker stack ps getstartedlab
+##Presist data docker-compose-redis.yml,Create a ./data directory on the manager:
+docker-machine ssh myvm1 "mkdir ./data"
+eval $(docker-machine env myvm1)
+docker stack deploy -c docker-compose-redis.yml getstartedlab
+docker service ls
+##Open 192.168.0.101:8080 dashboard
+
 
 #6), Deploy your app
