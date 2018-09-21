@@ -4,7 +4,7 @@ services:
     # replace username/repo:tag with your name and image details
     image: leotao/get-started:part2
     deploy:
-      replicas: 5
+      replicas: 6
       restart_policy:
         condition: on-failure
       resources:
@@ -22,6 +22,7 @@ services:
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
     deploy:
+      replicas: 2
       placement:
         constraints: [node.role == manager]
     networks:
@@ -33,6 +34,7 @@ services:
     volumes:
       - "/home/docker/data:/data"
     deploy:
+      replicas: 2
       placement:
         constraints: [node.role == manager]
     command: redis-server --appendonly yes
