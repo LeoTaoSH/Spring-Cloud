@@ -111,6 +111,47 @@ docker run username/repository:tag
 docker run -p 4000:80 leotao/get-started:part2
 ```
 
+# 3), Services
+- List stacks or apps
+```
+docker stack ls
+```
+
+- Run the specified Compose file, If you don’t run docker swarm init you get an error that “this node is not a swarm manager.”
+```
+docker swarm init
+docker stack deploy -c <composefile> <appname>
+```
+
+- List running services associated with an app
+```
+docker service ls
+```
+
+- List tasks associated with an app
+```
+docker service ps <service>
+```
+
+- Inspect task or container
+```
+docker inspect <task or container>
+```
+
+- List container IDs
+```
+docker container ls -q
+```
+
+- Tear down an application
+```
+docker stack rm <appname>
+```
+
+- Take down a single node swarm from the manager
+```
+docker swarm leave --force
+```
 
 
 
