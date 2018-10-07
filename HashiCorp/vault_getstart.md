@@ -94,6 +94,89 @@ vault read aws/creds/my-role
 - revoke a secret
 vault lease revoke aws/creds/my-role/0bce0782-32aa-25ec-f61d-c026ff22106
 
+- built-in help
+vault path-help aws
+vault path-help aws/creds/my-non-existent-role
+
+- create/revoke/login valut token
+vault token create
+vault token revoke 463763ae-0c3b-ff77-e137-af668941465c
+vault login a402d075-6d59-6129-1ac7-3718796d4346
+
+- other auth methods
+vault auth enable -path=github github
+vault auth enable github
+vault auth enable -path=my-github github
+vault write auth/github/config organization=hashicorp
+vault write auth/github/map/teams/my-team value=default,my-policy
+vault auth list
+vault auth help github
+vault auth help aws
+vault auth help userpass
+vault auth help token
+vault login -method=github
+vault login <initial-root-token>
+vault token revoke -mode path auth/github
+vault auth disable github
+
+- Policy
+
+```
+# Normal servers have version 1 of KV mounted by default, so will need these
+# paths:
+path "secret/*" {
+  capabilities = ["create"]
+}
+path "secret/foo" {
+  capabilities = ["read"]
+}
+
+# Dev servers have version 2 of KV mounted by default, so will need these
+# paths:
+path "secret/data/*" {
+  capabilities = ["create"]
+}
+path "secret/data/foo" {
+  capabilities = ["read"]
+}
+```
+
+vault policy fmt my-policy.hcl
+vault policy write my-policy my-policy.hcl
+vault policy list
+vault policy read my-policy
+vault token create -policy=my-policy
+vault login a4ebda12-23bf-5cf4-f80e-803ee2f37aab
+vault kv put secret/bar robot=beepboop
+vault kv put secret/foo robot=beepboop
+vault write auth/github/map/teams/default value=my-policy
+
+- Deploy valut
+```
+HCL file
+storage "consul" {
+  address = "127.0.0.1:8500"
+  path    = "vault/"
+}
+
+listener "tcp" {
+ address     = "127.0.0.1:8200"
+ tls_disable = 1
+}
+```
+consul agent -dev
+vault server -config=config.hcl
+vault operator init
+
+- Vault API call
+```
+ curl \
+    --request POST \
+    --data '{"secret_shares": 1, "secret_threshold": 1}' \
+    http://127.0.0.1:8200/v1/sys/init
+```
+
+
 
 
 
