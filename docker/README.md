@@ -1,5 +1,5 @@
 # Docker get-starter
-this is for docker experiment [docker-starter](https://docs.docker.com/get-started/) and docker swarm usage
+this is for docker  experiment [docker-starter](https://docs.docker.com/get-started/) and docker swarm usage
 # 1), Orientation
 - List Docker CLI commands
 ```
